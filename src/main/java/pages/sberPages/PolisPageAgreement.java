@@ -4,14 +4,14 @@ package pages.sberPages;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.BasePageClass;
+import pages.CORE.BasePageClass;
 
 /**
  * Created by Ariec on 19.07.2019.
  */
 public class PolisPageAgreement extends BasePageClass{
 
-    @FindBy(xpath = "//div[contains(text(), 'Достаточная')]")
+    @FindBy(xpath = "//div[contains(text(), 'Минимальная')]/..")
     private WebElement enoughBtn;
 
     @FindBy(xpath = "//span[@ng-click='save()'][text()='Оформить']")

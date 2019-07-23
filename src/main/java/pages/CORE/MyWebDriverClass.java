@@ -1,4 +1,4 @@
-package pages;
+package pages.CORE;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
@@ -27,7 +27,8 @@ public  class MyWebDriverClass {
         getDriver().manage().timeouts().implicitlyWait(40,TimeUnit.SECONDS);
     }
     public static WebDriver getDriver() {
-        driver = new ChromeDriver();
+        if(driver == null)
+            driver = new ChromeDriver();
         return driver;
     }
 
@@ -40,9 +41,9 @@ public  class MyWebDriverClass {
             getDriver().switchTo().window(str).close();
         }
     }
-
     public static WebDriverWait getWebDriverWait() {
-        webDriverWait = new WebDriverWait(getDriver(),7, 300);
+        if(webDriverWait == null)
+            webDriverWait = new WebDriverWait(getDriver(), 15, 100);
         return webDriverWait;
     }
     public static void perehodNaNovuyuStr(WebElement element){

@@ -1,12 +1,9 @@
-package pages;
-import io.qameta.allure.Step;
+package pages.CORE;
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 
-import java.sql.DriverManager;
 import java.util.List;
 
 
@@ -28,16 +25,31 @@ public class BasePageClass {
         actions.moveToElement(element).click().perform();
         element.sendKeys(s);
     }
+    public void ChooseCity(int c, List<WebElement> arrValues) {
+        ClickableElement(arrValues.get(c));
+    }
 
-    public void zapolnPoley(List<WebElement> arr, List<String> arrStr){
+    public void zapolnPoley(List<WebElement> textMas, List<String> arrStr){
+        if (arrStr.size() != textMas.size())
+            return;
+        if (arrStr.isEmpty() || textMas.isEmpty())
+            return;
         for (int i = 0; i < arrStr.size(); i++) {
-            zapTextPoley(arr.get(i),arrStr.get(i));
+            zapTextPoley(textMas.get(i),arrStr.get(i));
         }
+    }
+    public void poluchenieIzSravnenia(List<String> arrStr, List<WebElement> arrStrAct){
+        if(arrStr.size() != arrStrAct.size())
+            return;
+        if(arrStr.isEmpty() || arrStrAct.isEmpty())
+            return;
+        for (int i = 0; i <arrStr.size() ; i++) {
+            Assert.assertEquals(arrStr.get(i), arrStrAct.get(i).getAttribute("value"));
+        }
+    }
+    protected void sravnFunc(String s, WebElement element) {
+        Assert.assertEquals(s, MyWebDriverClass.ojidalkaMethod(element).getText());
     }
 
-    public void poluchenieIzSravnenia(List<String> arrStr, List<WebElement> arrStrAct){
-        for (int i = 0; i <arrStr.size() ; i++) {
-            Assert.assertEquals(arrStrAct.get(i), arrStrAct.get(i).getAttribute("kakoe to znach"));
-        }
-    }
+
 }
